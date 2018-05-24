@@ -28,18 +28,9 @@ deploy-to-k8s:
       ports: 
         - '9000'
    steps:
-      - kubectl:
-           name: create namespace    
-           server: $KUBERNETES_MASTER
-           token: $KUBERNETES_TOKEN
-           insecure-skip-tls-verify: true
-           command: apply -f $WERCKER_ROOT/ScalaPlayTest/kubernetes-namespace.yml
-      - script:
-           name: wait to create namespace
-           code: sleep 10
-      - kubectl:
+     - kubectl:
            name: create deployment
            server: $KUBERNETES_MASTER
            token: $KUBERNETES_TOKEN
            insecure-skip-tls-verify: true
-           command: apply -f $WERCKER_ROOT/ScalaPlayTest/kubernetes-deployment.yml --namespace=test-wercker
+           command: apply -f $WERCKER_ROOT/ScalaPlayTest/kubernetes-deployment.yml
