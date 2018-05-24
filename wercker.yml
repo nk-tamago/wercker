@@ -8,6 +8,7 @@ build:
    steps:
     - script:
          code: |
+            yum install -y git
             git clone https://github.com/orashio/ScalaPlayTest.git
             cd ScalaPlayTest && sbt compile
 
