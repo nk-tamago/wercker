@@ -21,3 +21,15 @@ deploy:
         ports: "9000"
         working-dir: /pipeline/source
         cmd: sbt run
+
+deploy-to-k8s:
+   box:
+      id: orashio/wercker-test
+      ports: "9000"
+   steps:
+      - kubectl:
+           name: create deployment
+           server: $KUBERNETES_MASTER
+           token: $KUBERNETES_TOKEN
+           insecure-skip-tls-verify: true
+           command: apply -f $WERCKER_ROOT/kubernetes-deployment.yml
