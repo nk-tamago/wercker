@@ -1,0 +1,23 @@
+box: 
+   id: jpusk/playscala
+   tag: 0.1
+   ports:
+     - '9000'
+
+build:
+   steps:
+    - script:
+         code: |
+            git clone https://github.com/orashio/ScalaPlayTest.git
+            cd ScalaPlayTest
+            sbt compile
+
+deploy:
+   steps:
+    - internal/docker-push:
+        username: $USERNAME
+        password: $PASSWORD
+        repository: orashio/sbt-test
+        ports: "9000"
+        working-dir: /pipeline/source
+        cmd: sbt run
