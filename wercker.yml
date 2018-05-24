@@ -1,6 +1,8 @@
 box: 
    id: jpusk/playscala
    tag: 0.1
+   ports:
+     - '9000'
 
 build:
    steps:
@@ -16,12 +18,15 @@ push-to-dockerhub:
         username: $USERNAME
         password: $PASSWORD
         repository: orashio/wercker-test
+        ports: "9000"
         working-dir: $WERCKER_ROOT/ScalaPlayTest
         cmd: sbt run
 
 deploy-to-k8s:
    box:
       id: orashio/wercker-test
+      ports: 
+        - '9000'
    steps:
      - kubectl:
            name: create deployment
