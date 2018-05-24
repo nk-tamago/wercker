@@ -19,7 +19,7 @@ push-to-dockerhub:
         password: $PASSWORD
         repository: orashio/wercker-test
         ports: "9000"
-        working-dir: /pipeline/source/ScalaPlayTest
+        working-dir: $WERCKER_ROOT/ScalaPlayTest
         cmd: sbt run
 
 deploy-to-k8s:
@@ -33,4 +33,4 @@ deploy-to-k8s:
            server: $KUBERNETES_MASTER
            token: $KUBERNETES_TOKEN
            insecure-skip-tls-verify: true
-           command: apply -f $WERCKER_ROOT/ScalaPlayTest/kubernetes-deployment.yml
+           command: apply -f $WERCKER_ROOT/kubernetes-deployment.yml
