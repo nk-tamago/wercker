@@ -9,7 +9,7 @@ build:
     - script:
          code: |
             yum install -y git
-            git clone https://github.com/orashio/ScalaPlayTest.git
+            git clone https://github.com/nk-tamago/ScalaPlayTest.git
             cd ScalaPlayTest && sbt compile
 
 push-to-dockerhub:
@@ -17,7 +17,7 @@ push-to-dockerhub:
     - internal/docker-push:
         username: $USERNAME
         password: $PASSWORD
-        repository: orashio/wercker-test
+        repository: tmikitagawa/wercker-test
         ports: "9000"
         working-dir: $WERCKER_ROOT/ScalaPlayTest
         cmd: sbt run
