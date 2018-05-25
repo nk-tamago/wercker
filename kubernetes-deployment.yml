@@ -25,7 +25,7 @@ spec:
     spec:
       containers:
       - name: scala-playbook
-        image: orashio/wercker-test 
+        image: tmikitagawa/wercker-test 
         ports:
         - containerPort: 9000
 
